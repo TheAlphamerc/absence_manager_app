@@ -1,0 +1,7 @@
+{
+    "@@locale": "en",
+    "appName": "Absence Manager",
+    "@appName": {
+        "description": "The name of the application"
+    }
+}

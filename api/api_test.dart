@@ -4,18 +4,18 @@ import 'api.dart';
 
 void main() {
   group('every member has key', () {
-    ['id', 'name', 'userId', 'image'].forEach((key) {
+    for (var key in ['id', 'name', 'userId', 'image']) {
       test(key, () async {
         List<dynamic> memberData = await members();
-        memberData.forEach((member) {
+        for (var member in memberData) {
           expect(member.containsKey(key), isTrue);
-        });
+        }
       });
-    });
+    }
   });
 
   group('every absence has key', () {
-    [
+    for (var key in [
       'admitterNote',
       'confirmedAt',
       'createdAt',
@@ -27,13 +27,13 @@ void main() {
       'startDate',
       'type',
       'userId',
-    ].forEach((key) {
+    ]) {
       test(key, () async {
         List<dynamic> absenceData = await absences();
-        absenceData.forEach((absence) {
+        for (var absence in absenceData) {
           expect(absence.containsKey(key), isTrue);
-        });
+        }
       });
-    });
+    }
   });
 }
