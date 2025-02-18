@@ -3,5 +3,14 @@ description: Mock API for Absence Manager App
 version: 0.0.1
 environment:
   sdk: "^3.2.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
 dev_dependencies:
   test: ^1.25.4
+
+flutter:
+  assets:
+    - assets/

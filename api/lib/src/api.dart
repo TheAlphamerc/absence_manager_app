@@ -1,21 +1,31 @@
 import 'dart:convert';
-import 'dart:io';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-const absencesPath = 'lib/json_files/absences.json';
-const membersPath = 'lib/json_files/members.json';
+const absencesPath = 'assets/absences.json';
+const membersPath = 'assets/members.json';
 
 class Api {
+  final bool usedForTesting;
+  Api({this.usedForTesting = false});
   Future<List<dynamic>> readJsonFile(String path) async {
-    String content = await File(path).readAsString();
-    Map<String, dynamic> data = jsonDecode(content);
-    return data['payload'];
+    try {
+      String content = await rootBundle.loadString(path);
+      Map<String, dynamic> data = jsonDecode(content);
+      return data['payload'];
+    } catch (e) {
+      debugPrint('ERROR: $e');
+      rethrow;
+    }
   }
 
   Future<List<dynamic>> absences() async {
-    return await readJsonFile(absencesPath);
+    return await readJsonFile(
+        usedForTesting ? absencesPath : 'packages/api/$absencesPath');
   }
 
   Future<List<dynamic>> members() async {
-    return await readJsonFile(membersPath);
+    return await readJsonFile(
+        usedForTesting ? membersPath : 'packages/api/$membersPath');
   }
 }

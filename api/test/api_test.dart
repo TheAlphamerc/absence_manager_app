@@ -1,10 +1,13 @@
 import 'package:api/src/api.dart';
+import 'package:flutter/material.dart';
 import 'package:test/test.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
   late Api api;
   setUp(() {
-    api = Api();
+    api = Api(usedForTesting: true);
   });
 
   group('every member has key', () {
