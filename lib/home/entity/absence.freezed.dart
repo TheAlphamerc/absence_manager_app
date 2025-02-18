@@ -32,6 +32,7 @@ mixin _$Absence {
   DateTime get startDate => throw _privateConstructorUsedError;
   AbsenceType get type => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
+  Member get member => throw _privateConstructorUsedError;
 
   /// Serializes this Absence to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -59,7 +60,10 @@ abstract class $AbsenceCopyWith<$Res> {
       DateTime endDate,
       DateTime startDate,
       AbsenceType type,
-      DateTime createdAt});
+      DateTime createdAt,
+      Member member});
+
+  $MemberCopyWith<$Res> get member;
 }
 
 /// @nodoc
@@ -89,6 +93,7 @@ class _$AbsenceCopyWithImpl<$Res, $Val extends Absence>
     Object? startDate = null,
     Object? type = null,
     Object? createdAt = null,
+    Object? member = null,
   }) {
     return _then(_value.copyWith(
       crewId: null == crewId
@@ -139,7 +144,21 @@ class _$AbsenceCopyWithImpl<$Res, $Val extends Absence>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      member: null == member
+          ? _value.member
+          : member // ignore: cast_nullable_to_non_nullable
+              as Member,
     ) as $Val);
+  }
+
+  /// Create a copy of Absence
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $MemberCopyWith<$Res> get member {
+    return $MemberCopyWith<$Res>(_value.member, (value) {
+      return _then(_value.copyWith(member: value) as $Val);
+    });
   }
 }
 
@@ -162,7 +181,11 @@ abstract class _$$AbsenceImplCopyWith<$Res> implements $AbsenceCopyWith<$Res> {
       DateTime endDate,
       DateTime startDate,
       AbsenceType type,
-      DateTime createdAt});
+      DateTime createdAt,
+      Member member});
+
+  @override
+  $MemberCopyWith<$Res> get member;
 }
 
 /// @nodoc
@@ -190,6 +213,7 @@ class __$$AbsenceImplCopyWithImpl<$Res>
     Object? startDate = null,
     Object? type = null,
     Object? createdAt = null,
+    Object? member = null,
   }) {
     return _then(_$AbsenceImpl(
       crewId: null == crewId
@@ -240,6 +264,10 @@ class __$$AbsenceImplCopyWithImpl<$Res>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      member: null == member
+          ? _value.member
+          : member // ignore: cast_nullable_to_non_nullable
+              as Member,
     ));
   }
 }
@@ -259,7 +287,8 @@ class _$AbsenceImpl implements _Absence {
       required this.endDate,
       required this.startDate,
       this.type = AbsenceType.vacation,
-      required this.createdAt});
+      required this.createdAt,
+      required this.member});
 
   factory _$AbsenceImpl.fromJson(Map<String, dynamic> json) =>
       _$$AbsenceImplFromJson(json);
@@ -291,10 +320,12 @@ class _$AbsenceImpl implements _Absence {
   final AbsenceType type;
   @override
   final DateTime createdAt;
+  @override
+  final Member member;
 
   @override
   String toString() {
-    return 'Absence(crewId: $crewId, userId: $userId, id: $id, admitterId: $admitterId, admitterNote: $admitterNote, memberNote: $memberNote, confirmedAt: $confirmedAt, rejectedAt: $rejectedAt, endDate: $endDate, startDate: $startDate, type: $type, createdAt: $createdAt)';
+    return 'Absence(crewId: $crewId, userId: $userId, id: $id, admitterId: $admitterId, admitterNote: $admitterNote, memberNote: $memberNote, confirmedAt: $confirmedAt, rejectedAt: $rejectedAt, endDate: $endDate, startDate: $startDate, type: $type, createdAt: $createdAt, member: $member)';
   }
 
   @override
@@ -320,7 +351,8 @@ class _$AbsenceImpl implements _Absence {
                 other.startDate == startDate) &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt));
+                other.createdAt == createdAt) &&
+            (identical(other.member, member) || other.member == member));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -338,7 +370,8 @@ class _$AbsenceImpl implements _Absence {
       endDate,
       startDate,
       type,
-      createdAt);
+      createdAt,
+      member);
 
   /// Create a copy of Absence
   /// with the given fields replaced by the non-null parameter values.
@@ -369,7 +402,8 @@ abstract class _Absence implements Absence {
       required final DateTime endDate,
       required final DateTime startDate,
       final AbsenceType type,
-      required final DateTime createdAt}) = _$AbsenceImpl;
+      required final DateTime createdAt,
+      required final Member member}) = _$AbsenceImpl;
 
   factory _Absence.fromJson(Map<String, dynamic> json) = _$AbsenceImpl.fromJson;
 
@@ -397,6 +431,8 @@ abstract class _Absence implements Absence {
   AbsenceType get type;
   @override
   DateTime get createdAt;
+  @override
+  Member get member;
 
   /// Create a copy of Absence
   /// with the given fields replaced by the non-null parameter values.

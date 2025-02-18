@@ -1,4 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import 'member.dart';
 part 'absence.g.dart';
 part 'absence.freezed.dart';
 
@@ -17,12 +19,14 @@ class Absence with _$Absence {
     required DateTime startDate,
     @Default(AbsenceType.vacation) AbsenceType type,
     required DateTime createdAt,
+    required Member member,
   }) = _Absence;
   factory Absence.fromJson(Map<String, dynamic> json) =>
       _$AbsenceFromJson(json);
 }
 
 enum AbsenceType {
+  all,
   vacation,
   sickness,
 }

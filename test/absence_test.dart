@@ -1,4 +1,4 @@
-import 'package:absence_manager_app/home/entity/absence.dart';
+import 'package:absence_manager_app/home/entity/entity.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -17,6 +17,13 @@ void main() {
       confirmedAt: DateTime.now(),
       rejectedAt: DateTime.now(),
       type: AbsenceType.vacation,
+      member: Member(
+        crewId: 1,
+        userId: 1,
+        id: 1,
+        name: 'Name',
+        image: 'Image',
+      ),
     );
 
     // Then
@@ -32,6 +39,7 @@ void main() {
     expect(model.confirmedAt, isA<DateTime>());
     expect(model.rejectedAt, isA<DateTime>());
     expect(model.type, AbsenceType.vacation);
+    expect(model.member, isA<Member>());
   });
 
   test('Absence model fromJson test', () {
@@ -48,7 +56,14 @@ void main() {
       'rejectedAt': DateTime.now().toIso8601String(),
       'startDate': DateTime.now().toIso8601String(),
       'type': 'sickness',
-      'userId': 1
+      'userId': 1,
+      'member': {
+        'crewId': 1,
+        'id': 1,
+        'name': 'Name',
+        'image': 'Image',
+        'userId': 1,
+      },
     });
 
     // Then
@@ -64,6 +79,7 @@ void main() {
     expect(absence.confirmedAt, isA<DateTime>());
     expect(absence.rejectedAt, isA<DateTime>());
     expect(absence.type, AbsenceType.sickness);
+    expect(absence.member, isA<Member>());
   });
 
   test('Absence model toJson test', () {
@@ -81,6 +97,13 @@ void main() {
       confirmedAt: DateTime.now(),
       rejectedAt: DateTime.now(),
       type: AbsenceType.vacation,
+      member: Member(
+        crewId: 1,
+        userId: 1,
+        id: 1,
+        name: 'Name',
+        image: 'Image',
+      ),
     );
 
     // When
@@ -101,8 +124,8 @@ void main() {
     ];
 
     //Then
-    keys.forEach((key) {
+    for (var key in keys) {
       expect(absenceJson.containsKey(key), isTrue);
-    });
+    }
   });
 }

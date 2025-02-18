@@ -25,6 +25,7 @@ _$AbsenceImpl _$$AbsenceImplFromJson(Map<String, dynamic> json) =>
       type: $enumDecodeNullable(_$AbsenceTypeEnumMap, json['type']) ??
           AbsenceType.vacation,
       createdAt: DateTime.parse(json['createdAt'] as String),
+      member: Member.fromJson(json['member'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$AbsenceImplToJson(_$AbsenceImpl instance) =>
@@ -41,9 +42,11 @@ Map<String, dynamic> _$$AbsenceImplToJson(_$AbsenceImpl instance) =>
       'startDate': instance.startDate.toIso8601String(),
       'type': _$AbsenceTypeEnumMap[instance.type]!,
       'createdAt': instance.createdAt.toIso8601String(),
+      'member': instance.member,
     };
 
 const _$AbsenceTypeEnumMap = {
+  AbsenceType.all: 'all',
   AbsenceType.vacation: 'vacation',
   AbsenceType.sickness: 'sickness',
 };
