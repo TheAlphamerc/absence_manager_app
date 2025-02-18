@@ -45,8 +45,27 @@ class AbsenceRepository {
         start, end > absences.length ? absences.length : end);
   }
 
-  Future<int> getTotalAbsences() async {
-    final List<dynamic> absencesData = await api.absences();
-    return absencesData.length;
+  Future<int> getTotalAbsences({
+    String? typeFilter,
+    DateTime? startDate,
+    DateTime? endDate,
+  }) async {
+    List<dynamic> absencesData = await api.absences();
+
+    List<Absence> absences = absencesData.map((json) {
+      final map = json;
+      return Absence.fromJson(map);
+    }).toList();
+    // Apply filters
+    if (typeFilter != null) {
+      absences = absences.where((a) => a.type.name == typeFilter).toList();
+    }
+    if (startDate != null) {
+      absences = absences.where((a) => a.startDate.isAfter(startDate)).toList();
+    }
+    if (endDate != null) {
+      absences = absences.where((a) => a.endDate.isBefore(endDate)).toList();
+    }
+    return absences.length;
   }
 }

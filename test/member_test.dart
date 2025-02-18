@@ -1,4 +1,4 @@
-import 'package:absence_manager_app/home/entity/member.dart';
+import 'package:absence_manager_app/feature/home/entity/member.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

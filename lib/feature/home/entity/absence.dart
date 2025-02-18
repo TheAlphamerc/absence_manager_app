@@ -19,7 +19,7 @@ class Absence with _$Absence {
     required DateTime startDate,
     @Default(AbsenceType.vacation) AbsenceType type,
     required DateTime createdAt,
-    required Member member,
+    Member? member,
   }) = _Absence;
   factory Absence.fromJson(Map<String, dynamic> json) =>
       _$AbsenceFromJson(json);

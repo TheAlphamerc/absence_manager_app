@@ -32,7 +32,7 @@ mixin _$Absence {
   DateTime get startDate => throw _privateConstructorUsedError;
   AbsenceType get type => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
-  Member get member => throw _privateConstructorUsedError;
+  Member? get member => throw _privateConstructorUsedError;
 
   /// Serializes this Absence to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -61,9 +61,9 @@ abstract class $AbsenceCopyWith<$Res> {
       DateTime startDate,
       AbsenceType type,
       DateTime createdAt,
-      Member member});
+      Member? member});
 
-  $MemberCopyWith<$Res> get member;
+  $MemberCopyWith<$Res>? get member;
 }
 
 /// @nodoc
@@ -93,7 +93,7 @@ class _$AbsenceCopyWithImpl<$Res, $Val extends Absence>
     Object? startDate = null,
     Object? type = null,
     Object? createdAt = null,
-    Object? member = null,
+    Object? member = freezed,
   }) {
     return _then(_value.copyWith(
       crewId: null == crewId
@@ -144,10 +144,10 @@ class _$AbsenceCopyWithImpl<$Res, $Val extends Absence>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      member: null == member
+      member: freezed == member
           ? _value.member
           : member // ignore: cast_nullable_to_non_nullable
-              as Member,
+              as Member?,
     ) as $Val);
   }
 
@@ -155,8 +155,12 @@ class _$AbsenceCopyWithImpl<$Res, $Val extends Absence>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $MemberCopyWith<$Res> get member {
-    return $MemberCopyWith<$Res>(_value.member, (value) {
+  $MemberCopyWith<$Res>? get member {
+    if (_value.member == null) {
+      return null;
+    }
+
+    return $MemberCopyWith<$Res>(_value.member!, (value) {
       return _then(_value.copyWith(member: value) as $Val);
     });
   }
@@ -182,10 +186,10 @@ abstract class _$$AbsenceImplCopyWith<$Res> implements $AbsenceCopyWith<$Res> {
       DateTime startDate,
       AbsenceType type,
       DateTime createdAt,
-      Member member});
+      Member? member});
 
   @override
-  $MemberCopyWith<$Res> get member;
+  $MemberCopyWith<$Res>? get member;
 }
 
 /// @nodoc
@@ -213,7 +217,7 @@ class __$$AbsenceImplCopyWithImpl<$Res>
     Object? startDate = null,
     Object? type = null,
     Object? createdAt = null,
-    Object? member = null,
+    Object? member = freezed,
   }) {
     return _then(_$AbsenceImpl(
       crewId: null == crewId
@@ -264,10 +268,10 @@ class __$$AbsenceImplCopyWithImpl<$Res>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      member: null == member
+      member: freezed == member
           ? _value.member
           : member // ignore: cast_nullable_to_non_nullable
-              as Member,
+              as Member?,
     ));
   }
 }
@@ -288,7 +292,7 @@ class _$AbsenceImpl implements _Absence {
       required this.startDate,
       this.type = AbsenceType.vacation,
       required this.createdAt,
-      required this.member});
+      this.member});
 
   factory _$AbsenceImpl.fromJson(Map<String, dynamic> json) =>
       _$$AbsenceImplFromJson(json);
@@ -321,7 +325,7 @@ class _$AbsenceImpl implements _Absence {
   @override
   final DateTime createdAt;
   @override
-  final Member member;
+  final Member? member;
 
   @override
   String toString() {
@@ -403,7 +407,7 @@ abstract class _Absence implements Absence {
       required final DateTime startDate,
       final AbsenceType type,
       required final DateTime createdAt,
-      required final Member member}) = _$AbsenceImpl;
+      final Member? member}) = _$AbsenceImpl;
 
   factory _Absence.fromJson(Map<String, dynamic> json) = _$AbsenceImpl.fromJson;
 
@@ -432,7 +436,7 @@ abstract class _Absence implements Absence {
   @override
   DateTime get createdAt;
   @override
-  Member get member;
+  Member? get member;
 
   /// Create a copy of Absence
   /// with the given fields replaced by the non-null parameter values.
