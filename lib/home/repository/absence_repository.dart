@@ -44,4 +44,9 @@ class AbsenceRepository {
     return absences.sublist(
         start, end > absences.length ? absences.length : end);
   }
+
+  Future<int> getTotalAbsences() async {
+    final List<dynamic> absencesData = await api.absences();
+    return absencesData.length;
+  }
 }
