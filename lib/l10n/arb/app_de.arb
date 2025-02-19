@@ -4,5 +4,15 @@
     "@appName": {
         "description": "Der Name der Anwendung"
     },
-    "total":"Gesamt"
+    "total":"Gesamt",
+    "type": "Typ",
+    "status": "Status",
+    "from": "Von",
+    "to": "Bis",
+    "note": "Notiz",
+    "admitterNote": "Genehmiger Notiz",
+    "settingPageTitle": "Einstellungen",
+    "settingPageDescription": "Ändern Sie die Einstellungen der Anwendung",
+    "settingPageLanguage": "Sprache",
+    "settingPageDarkMode": "Dunkler Modus"
 }

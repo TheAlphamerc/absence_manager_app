@@ -1,8 +1,10 @@
 import 'package:absence_manager_app/feature/home/bloc/absence_bloc.dart';
+import 'package:absence_manager_app/feature/settings/views/setting_page.dart';
 import 'package:absence_manager_app/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../settings/bloc/setting_bloc.dart';
 import '../widgets/widgets.dart';
 
 class HomePage extends StatelessWidget {
@@ -51,6 +53,12 @@ class HomePage extends StatelessWidget {
             icon: const Icon(Icons.filter_list),
             onPressed: () => _openFiltersDialog(context),
           ),
+          IconButton(
+              onPressed: () {
+                Navigator.push(
+                    context, SettingPage.getRoute(context.read<SettingBloc>()));
+              },
+              icon: const Icon(Icons.settings)),
         ],
       ),
       body: AbsenceList(),

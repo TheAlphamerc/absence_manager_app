@@ -1,3 +1,5 @@
+import 'package:absence_manager_app/l10n/l10n.dart';
+import 'package:absence_manager_app/theme/theme.dart';
 import 'package:flutter/material.dart';
 import '../entity/entity.dart';
 
@@ -35,14 +37,23 @@ class AbsenceListItem extends StatelessWidget {
                 absence.member?.name ?? "",
                 style: Theme.of(context).textTheme.titleMedium,
               ),
-              Text('Type: ${absence.type}'),
-              Text('Status: ${absence.type.name.toUpperCase()}'),
-              Text(
-                  'From: ${_formatDate(absence.startDate)} To: ${_formatDate(absence.endDate)}'),
+              _label(context, context.l10n.type, absence.type.name),
+              _label(context, context.l10n.status,
+                  absence.type.name.toUpperCase()),
+              Row(
+                children: [
+                  _label(context, context.l10n.from,
+                      _formatDate(absence.startDate)),
+                  const SizedBox(width: 8),
+                  _label(
+                      context, context.l10n.to, _formatDate(absence.endDate)),
+                ],
+              ),
               if (absence.memberNote.isNotEmpty)
-                Text('Note: ${absence.memberNote}'),
+                _label(context, context.l10n.note, absence.memberNote),
               if (absence.admitterNote.isNotEmpty)
-                Text('Admitter Note: ${absence.admitterNote}'),
+                _label(
+                    context, context.l10n.admitterNote, absence.admitterNote),
             ],
           ),
         ),
@@ -56,6 +67,27 @@ class AbsenceListItem extends StatelessWidget {
   }
 
   void _generateICal(Absence absence) {}
+
+  Widget _label(BuildContext context, String key, String value) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          '$key:',
+          style: context.textTheme.titleSmall,
+        ),
+        const SizedBox(width: 4),
+        Flexible(
+            child: Text(
+          value,
+          style: context.textTheme.bodyMedium!.copyWith(
+            color: context.colorScheme.secondary,
+          ),
+        )),
+      ],
+    );
+  }
 
   Widget _buildActions(BuildContext context, Absence absence) {
     return PopupMenuButton(
