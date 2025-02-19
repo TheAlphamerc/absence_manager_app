@@ -18,7 +18,7 @@ class AbsenceListItem extends StatelessWidget {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(4),
             child: Image.network(
-              '${absence.member?.image}?id=${absence.id}',
+              '${absence.member?.image}?id=${absence.member!.userId}',
               fit: BoxFit.cover,
               cacheWidth: 40,
               cacheHeight: 40,

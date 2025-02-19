@@ -3,5 +3,6 @@
     "appName": "Absence Manager",
     "@appName": {
         "description": "The name of the application"
-    }
+    },
+    "total":"Total"
 }

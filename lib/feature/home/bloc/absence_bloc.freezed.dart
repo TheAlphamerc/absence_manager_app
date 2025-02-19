@@ -20,8 +20,8 @@ mixin _$AbsenceState {
   int get page => throw _privateConstructorUsedError;
   bool get hasReachedMax => throw _privateConstructorUsedError;
   int get totalAbsences => throw _privateConstructorUsedError;
-  AbsenceType get typeFilter => throw _privateConstructorUsedError;
   Status get status => throw _privateConstructorUsedError;
+  FilterBy? get filterBy => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
 
   /// Create a copy of AbsenceState
@@ -42,9 +42,11 @@ abstract class $AbsenceStateCopyWith<$Res> {
       int page,
       bool hasReachedMax,
       int totalAbsences,
-      AbsenceType typeFilter,
       Status status,
+      FilterBy? filterBy,
       String? message});
+
+  $FilterByCopyWith<$Res>? get filterBy;
 }
 
 /// @nodoc
@@ -66,8 +68,8 @@ class _$AbsenceStateCopyWithImpl<$Res, $Val extends AbsenceState>
     Object? page = null,
     Object? hasReachedMax = null,
     Object? totalAbsences = null,
-    Object? typeFilter = null,
     Object? status = null,
+    Object? filterBy = freezed,
     Object? message = freezed,
   }) {
     return _then(_value.copyWith(
@@ -87,19 +89,33 @@ class _$AbsenceStateCopyWithImpl<$Res, $Val extends AbsenceState>
           ? _value.totalAbsences
           : totalAbsences // ignore: cast_nullable_to_non_nullable
               as int,
-      typeFilter: null == typeFilter
-          ? _value.typeFilter
-          : typeFilter // ignore: cast_nullable_to_non_nullable
-              as AbsenceType,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as Status,
+      filterBy: freezed == filterBy
+          ? _value.filterBy
+          : filterBy // ignore: cast_nullable_to_non_nullable
+              as FilterBy?,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
+  }
+
+  /// Create a copy of AbsenceState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $FilterByCopyWith<$Res>? get filterBy {
+    if (_value.filterBy == null) {
+      return null;
+    }
+
+    return $FilterByCopyWith<$Res>(_value.filterBy!, (value) {
+      return _then(_value.copyWith(filterBy: value) as $Val);
+    });
   }
 }
 
@@ -116,9 +132,12 @@ abstract class _$$AbsenceStateImplCopyWith<$Res>
       int page,
       bool hasReachedMax,
       int totalAbsences,
-      AbsenceType typeFilter,
       Status status,
+      FilterBy? filterBy,
       String? message});
+
+  @override
+  $FilterByCopyWith<$Res>? get filterBy;
 }
 
 /// @nodoc
@@ -138,8 +157,8 @@ class __$$AbsenceStateImplCopyWithImpl<$Res>
     Object? page = null,
     Object? hasReachedMax = null,
     Object? totalAbsences = null,
-    Object? typeFilter = null,
     Object? status = null,
+    Object? filterBy = freezed,
     Object? message = freezed,
   }) {
     return _then(_$AbsenceStateImpl(
@@ -159,14 +178,14 @@ class __$$AbsenceStateImplCopyWithImpl<$Res>
           ? _value.totalAbsences
           : totalAbsences // ignore: cast_nullable_to_non_nullable
               as int,
-      typeFilter: null == typeFilter
-          ? _value.typeFilter
-          : typeFilter // ignore: cast_nullable_to_non_nullable
-              as AbsenceType,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as Status,
+      filterBy: freezed == filterBy
+          ? _value.filterBy
+          : filterBy // ignore: cast_nullable_to_non_nullable
+              as FilterBy?,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -183,8 +202,8 @@ class _$AbsenceStateImpl implements _AbsenceState {
       this.page = 1,
       this.hasReachedMax = false,
       this.totalAbsences = 0,
-      this.typeFilter = AbsenceType.all,
       this.status = Status.initial,
+      this.filterBy,
       this.message})
       : _absences = absences;
 
@@ -208,16 +227,15 @@ class _$AbsenceStateImpl implements _AbsenceState {
   final int totalAbsences;
   @override
   @JsonKey()
-  final AbsenceType typeFilter;
-  @override
-  @JsonKey()
   final Status status;
+  @override
+  final FilterBy? filterBy;
   @override
   final String? message;
 
   @override
   String toString() {
-    return 'AbsenceState(absences: $absences, page: $page, hasReachedMax: $hasReachedMax, totalAbsences: $totalAbsences, typeFilter: $typeFilter, status: $status, message: $message)';
+    return 'AbsenceState(absences: $absences, page: $page, hasReachedMax: $hasReachedMax, totalAbsences: $totalAbsences, status: $status, filterBy: $filterBy, message: $message)';
   }
 
   @override
@@ -231,9 +249,9 @@ class _$AbsenceStateImpl implements _AbsenceState {
                 other.hasReachedMax == hasReachedMax) &&
             (identical(other.totalAbsences, totalAbsences) ||
                 other.totalAbsences == totalAbsences) &&
-            (identical(other.typeFilter, typeFilter) ||
-                other.typeFilter == typeFilter) &&
             (identical(other.status, status) || other.status == status) &&
+            (identical(other.filterBy, filterBy) ||
+                other.filterBy == filterBy) &&
             (identical(other.message, message) || other.message == message));
   }
 
@@ -244,8 +262,8 @@ class _$AbsenceStateImpl implements _AbsenceState {
       page,
       hasReachedMax,
       totalAbsences,
-      typeFilter,
       status,
+      filterBy,
       message);
 
   /// Create a copy of AbsenceState
@@ -263,8 +281,8 @@ abstract class _AbsenceState implements AbsenceState {
       final int page,
       final bool hasReachedMax,
       final int totalAbsences,
-      final AbsenceType typeFilter,
       final Status status,
+      final FilterBy? filterBy,
       final String? message}) = _$AbsenceStateImpl;
 
   @override
@@ -276,9 +294,9 @@ abstract class _AbsenceState implements AbsenceState {
   @override
   int get totalAbsences;
   @override
-  AbsenceType get typeFilter;
-  @override
   Status get status;
+  @override
+  FilterBy? get filterBy;
   @override
   String? get message;
 
@@ -287,5 +305,169 @@ abstract class _AbsenceState implements AbsenceState {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AbsenceStateImplCopyWith<_$AbsenceStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$FilterBy {
+  String? get typeFilter => throw _privateConstructorUsedError;
+  DateTime? get startDate => throw _privateConstructorUsedError;
+  DateTime? get endDate => throw _privateConstructorUsedError;
+
+  /// Create a copy of FilterBy
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $FilterByCopyWith<FilterBy> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $FilterByCopyWith<$Res> {
+  factory $FilterByCopyWith(FilterBy value, $Res Function(FilterBy) then) =
+      _$FilterByCopyWithImpl<$Res, FilterBy>;
+  @useResult
+  $Res call({String? typeFilter, DateTime? startDate, DateTime? endDate});
+}
+
+/// @nodoc
+class _$FilterByCopyWithImpl<$Res, $Val extends FilterBy>
+    implements $FilterByCopyWith<$Res> {
+  _$FilterByCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of FilterBy
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? typeFilter = freezed,
+    Object? startDate = freezed,
+    Object? endDate = freezed,
+  }) {
+    return _then(_value.copyWith(
+      typeFilter: freezed == typeFilter
+          ? _value.typeFilter
+          : typeFilter // ignore: cast_nullable_to_non_nullable
+              as String?,
+      startDate: freezed == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      endDate: freezed == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$FilterByImplCopyWith<$Res>
+    implements $FilterByCopyWith<$Res> {
+  factory _$$FilterByImplCopyWith(
+          _$FilterByImpl value, $Res Function(_$FilterByImpl) then) =
+      __$$FilterByImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String? typeFilter, DateTime? startDate, DateTime? endDate});
+}
+
+/// @nodoc
+class __$$FilterByImplCopyWithImpl<$Res>
+    extends _$FilterByCopyWithImpl<$Res, _$FilterByImpl>
+    implements _$$FilterByImplCopyWith<$Res> {
+  __$$FilterByImplCopyWithImpl(
+      _$FilterByImpl _value, $Res Function(_$FilterByImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of FilterBy
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? typeFilter = freezed,
+    Object? startDate = freezed,
+    Object? endDate = freezed,
+  }) {
+    return _then(_$FilterByImpl(
+      typeFilter: freezed == typeFilter
+          ? _value.typeFilter
+          : typeFilter // ignore: cast_nullable_to_non_nullable
+              as String?,
+      startDate: freezed == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      endDate: freezed == endDate
+          ? _value.endDate
+          : endDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$FilterByImpl implements _FilterBy {
+  const _$FilterByImpl({this.typeFilter, this.startDate, this.endDate});
+
+  @override
+  final String? typeFilter;
+  @override
+  final DateTime? startDate;
+  @override
+  final DateTime? endDate;
+
+  @override
+  String toString() {
+    return 'FilterBy(typeFilter: $typeFilter, startDate: $startDate, endDate: $endDate)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FilterByImpl &&
+            (identical(other.typeFilter, typeFilter) ||
+                other.typeFilter == typeFilter) &&
+            (identical(other.startDate, startDate) ||
+                other.startDate == startDate) &&
+            (identical(other.endDate, endDate) || other.endDate == endDate));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, typeFilter, startDate, endDate);
+
+  /// Create a copy of FilterBy
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FilterByImplCopyWith<_$FilterByImpl> get copyWith =>
+      __$$FilterByImplCopyWithImpl<_$FilterByImpl>(this, _$identity);
+}
+
+abstract class _FilterBy implements FilterBy {
+  const factory _FilterBy(
+      {final String? typeFilter,
+      final DateTime? startDate,
+      final DateTime? endDate}) = _$FilterByImpl;
+
+  @override
+  String? get typeFilter;
+  @override
+  DateTime? get startDate;
+  @override
+  DateTime? get endDate;
+
+  /// Create a copy of FilterBy
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$FilterByImplCopyWith<_$FilterByImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

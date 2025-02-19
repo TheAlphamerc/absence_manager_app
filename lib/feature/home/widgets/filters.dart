@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 
+import '../bloc/absence_bloc.dart';
+
 typedef OnFilterApplied = void Function(
     String? type, DateTime? startDate, DateTime? endDate);
 
 class FiltersWidget extends StatefulWidget {
-  const FiltersWidget({super.key, required this.onFilterApplied});
+  const FiltersWidget({
+    super.key,
+    required this.onFilterApplied,
+    this.filterBy,
+  });
   final OnFilterApplied onFilterApplied;
+  final FilterBy? filterBy;
 
   @override
   FiltersWidgetState createState() => FiltersWidgetState();
@@ -15,6 +22,14 @@ class FiltersWidgetState extends State<FiltersWidget> {
   String? _selectedType;
   DateTime? _startDate;
   DateTime? _endDate;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedType = widget.filterBy?.typeFilter;
+    _startDate = widget.filterBy?.startDate;
+    _endDate = widget.filterBy?.endDate;
+  }
 
   Future<void> _selectDate(BuildContext context, bool isStartDate) async {
     final DateTime? picked = await showDatePicker(
@@ -35,15 +50,7 @@ class FiltersWidgetState extends State<FiltersWidget> {
   }
 
   void _applyFilters(BuildContext context) {
-    // context.read<AbsenceBloc>().add(
-    //       FetchAbsences(
-    //         typeFilter: _selectedType,
-    //         startDate: _startDate,
-    //         endDate: _endDate,
-    //       ),
-    //     );
-
-    Navigator.of(context).pop(); // Close the dialog after applying filters
+    Navigator.of(context).pop();
     widget.onFilterApplied(_selectedType, _startDate, _endDate);
   }
 
@@ -53,7 +60,7 @@ class FiltersWidgetState extends State<FiltersWidget> {
       _startDate = null;
       _endDate = null;
     });
-    Navigator.of(context).pop(); // Close the dialog after clearing filters
+    Navigator.of(context).pop();
     widget.onFilterApplied(null, null, null);
   }
 

@@ -12,9 +12,6 @@ part 'absence_state.dart';
 
 class AbsenceBloc extends Bloc<AbsenceEvent, AbsenceState> {
   final AbsenceRepository repository;
-  String? currentTypeFilter;
-  DateTime? currentStartDate;
-  DateTime? currentEndDate;
 
   AbsenceBloc({required this.repository}) : super(AbsenceState.initial()) {
     on<FetchAbsences>(_onFetchAbsences);
@@ -23,17 +20,18 @@ class AbsenceBloc extends Bloc<AbsenceEvent, AbsenceState> {
 
   Future<void> _onFetchAbsences(
       FetchAbsences event, Emitter<AbsenceState> emit) async {
-    currentTypeFilter = event.typeFilter;
-    currentStartDate = event.startDate;
-    currentEndDate = event.endDate;
+    final currentTypeFilter = event.typeFilter;
+    final currentStartDate = event.startDate;
+    final currentEndDate = event.endDate;
     emit(state.copyWith(status: Status.loading));
     try {
       final result = await repository.getAbsences(
-        page: 1,
-        typeFilter: currentTypeFilter,
-        startDate: currentStartDate,
-        endDate: currentEndDate,
-      );
+          page: 1,
+          filterBy: FilterBy(
+            typeFilter: currentTypeFilter,
+            startDate: currentStartDate,
+            endDate: currentEndDate,
+          ));
 
       final total = await _getTotalAbsences(
         typeFilter: currentTypeFilter,
@@ -46,10 +44,11 @@ class AbsenceBloc extends Bloc<AbsenceEvent, AbsenceState> {
         hasReachedMax: result.length < 10,
         totalAbsences: total,
         status: Status.loaded,
-        typeFilter: currentTypeFilter != null
-            ? AbsenceType.values
-                .firstWhere((element) => element.name == event.typeFilter)
-            : AbsenceType.all,
+        filterBy: FilterBy(
+          typeFilter: currentTypeFilter,
+          startDate: currentStartDate,
+          endDate: currentEndDate,
+        ),
       ));
     } catch (e) {
       emit(state.copyWith(
@@ -74,11 +73,7 @@ class AbsenceBloc extends Bloc<AbsenceEvent, AbsenceState> {
       await Future.delayed(const Duration(seconds: 3));
       debugPrint('Loading page: ${state.page}');
       final result = await repository.getAbsences(
-        page: state.page,
-        typeFilter: currentTypeFilter,
-        startDate: currentStartDate,
-        endDate: currentEndDate,
-      );
+          page: state.page, filterBy: state.filterBy);
 
       emit(state.copyWith(
         absences: [...state.absences, ...result],

@@ -1,4 +1,5 @@
 import 'package:absence_manager_app/feature/home/bloc/absence_bloc.dart';
+import 'package:absence_manager_app/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,6 +13,7 @@ class HomePage extends StatelessWidget {
       context: context,
       builder: (_) {
         return FiltersWidget(
+          filterBy: context.read<AbsenceBloc>().state.filterBy,
           onFilterApplied:
               (String? type, DateTime? startDate, DateTime? endDate) {
             context.read<AbsenceBloc>().add(
@@ -31,14 +33,15 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Absence Manager'),
+        title: Text(AppLocalizations.of(context).appName),
         actions: [
           BlocBuilder<AbsenceBloc, AbsenceState>(
             builder: (context, state) {
               if (state.totalAbsences > 0) {
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text('Total: ${state.totalAbsences}'),
+                  child: Text(
+                      '${AppLocalizations.of(context).total}: ${state.totalAbsences}'),
                 );
               }
               return const SizedBox.shrink();
@@ -50,14 +53,7 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          // const FiltersWidget(),
-          Expanded(
-            child: AbsenceList(),
-          ),
-        ],
-      ),
+      body: AbsenceList(),
     );
   }
 }

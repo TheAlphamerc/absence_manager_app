@@ -1,3 +1,4 @@
+import 'package:absence_manager_app/feature/home/bloc/absence_bloc.dart';
 import 'package:api/api.dart';
 
 import '../entity/entity.dart';
@@ -9,9 +10,7 @@ class AbsenceRepository {
   Future<List<Absence>> getAbsences({
     int page = 1,
     int perPage = 10,
-    String? typeFilter,
-    DateTime? startDate,
-    DateTime? endDate,
+    FilterBy? filterBy,
   }) async {
     final List<dynamic> absencesData = await api.absences();
 
@@ -27,14 +26,19 @@ class AbsenceRepository {
     }).toList();
 
     // Apply filters
-    if (typeFilter != null) {
-      absences = absences.where((a) => a.type.name == typeFilter).toList();
+    if (filterBy?.typeFilter != null) {
+      absences =
+          absences.where((a) => a.type.name == filterBy?.typeFilter).toList();
     }
-    if (startDate != null) {
-      absences = absences.where((a) => a.startDate.isAfter(startDate)).toList();
+    if (filterBy?.startDate != null) {
+      absences = absences
+          .where((a) => a.startDate.isAfter(filterBy!.startDate!))
+          .toList();
     }
-    if (endDate != null) {
-      absences = absences.where((a) => a.endDate.isBefore(endDate)).toList();
+    if (filterBy?.endDate != null) {
+      absences = absences
+          .where((a) => a.endDate.isBefore(filterBy!.endDate!))
+          .toList();
     }
 
     // Paginate
