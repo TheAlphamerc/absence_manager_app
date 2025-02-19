@@ -19,7 +19,6 @@ class AbsenceRepository {
     List<Absence> absences = absencesData.map((json) {
       final member = membersData.firstWhere(
         (m) => m['userId'] == json['userId'],
-        orElse: () => {},
       );
       final map = json..addAll({'member': member});
       return Absence.fromJson(map);
