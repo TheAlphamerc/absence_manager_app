@@ -10,8 +10,8 @@ import '../widgets/widgets.dart';
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
-  void _openFiltersDialog(BuildContext context) {
-    showDialog(
+  void _openFiltersDialog(BuildContext context) async {
+    await showDialog(
       context: context,
       builder: (_) {
         return FiltersWidget(
@@ -50,10 +50,12 @@ class HomePage extends StatelessWidget {
             },
           ),
           IconButton(
+            key: const Key('filter_button'),
             icon: const Icon(Icons.filter_list),
             onPressed: () => _openFiltersDialog(context),
           ),
           IconButton(
+              key: const Key('settings_button'),
               onPressed: () {
                 Navigator.push(
                     context, SettingPage.getRoute(context.read<SettingBloc>()));
