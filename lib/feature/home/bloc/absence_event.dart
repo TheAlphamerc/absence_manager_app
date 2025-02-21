@@ -4,7 +4,7 @@ abstract class AbsenceEvent extends Equatable {
   const AbsenceEvent();
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
 class FetchAbsences extends AbsenceEvent {
@@ -13,6 +13,9 @@ class FetchAbsences extends AbsenceEvent {
   final DateTime? endDate;
 
   const FetchAbsences({this.typeFilter, this.startDate, this.endDate});
+
+  @override
+  List<Object?> get props => [typeFilter, startDate, endDate];
 }
 
 class LoadMoreAbsences extends AbsenceEvent {}
