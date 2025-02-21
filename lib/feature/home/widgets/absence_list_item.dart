@@ -91,10 +91,12 @@ class AbsenceListItem extends StatelessWidget {
 
   Widget _buildActions(BuildContext context, Absence absence) {
     return PopupMenuButton(
+      key: const Key('absence_popup_menu'),
       itemBuilder: (context) {
         return [
           PopupMenuItem(
             child: ListTile(
+              key: const Key('generate_ical'),
               title: const Text('Generate iCal'),
               onTap: () => _generateICal(absence),
             ),

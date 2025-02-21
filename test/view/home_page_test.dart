@@ -22,7 +22,7 @@ void main() {
   setUp(() {
     absenceBloc = MockAbsenceBloc();
   });
-  group('Home Screen', () {
+  group('Home Page', () {
     testWidgets('Should have AbsenceList widget when app is loaded',
         (tester) async {
       final screen = BlocProvider(
