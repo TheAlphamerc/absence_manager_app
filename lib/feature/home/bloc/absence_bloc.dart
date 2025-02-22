@@ -71,7 +71,6 @@ class AbsenceBloc extends Bloc<AbsenceEvent, AbsenceState> {
     try {
       // Simulate network delay
       // await Future.delayed(const Duration(seconds: 3));
-      debugPrint('Loading page: ${state.page}');
       final result = await repository.getAbsences(
           page: state.page, filterBy: state.filterBy);
 

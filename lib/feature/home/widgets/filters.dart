@@ -74,11 +74,14 @@ class FiltersWidgetState extends State<FiltersWidget> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             DropdownButtonFormField<String>(
+              key: const Key('filter_by_type_dropdown'),
               value: _selectedType,
-              hint: const Text('Filter by type'),
+              hint:
+                  const Text('Filter by type', key: Key('filter_by_type_text')),
               items: ['sickness', 'vacation'].map((String type) {
                 return DropdownMenuItem<String>(
                   value: type,
+                  key: Key('filter_by_type_$type'),
                   child: Text(type),
                 );
               }).toList(),
@@ -95,12 +98,14 @@ class FiltersWidgetState extends State<FiltersWidget> {
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: TextButton.icon(
+                      key: const Key('start_date_button'),
                       icon: const Icon(Icons.calendar_month_outlined),
                       onPressed: () => _selectDate(context, true),
                       label: Text(
                         _startDate == null
                             ? 'Select Start Date'
                             : _startDate!.toLocal().toString().split(' ')[0],
+                        key: const Key('start_date_text'),
                       ),
                     ),
                   ),
@@ -122,12 +127,14 @@ class FiltersWidgetState extends State<FiltersWidget> {
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: TextButton.icon(
+                      key: const Key('end_date_button'),
                       icon: const Icon(Icons.calendar_month_outlined),
                       onPressed: () => _selectDate(context, false),
                       label: Text(
                         _endDate == null
                             ? 'Select End Date'
                             : _endDate!.toLocal().toString().split(' ')[0],
+                        key: const Key('end_date_text'),
                       ),
                     ),
                   ),
@@ -148,10 +155,12 @@ class FiltersWidgetState extends State<FiltersWidget> {
       ),
       actions: [
         TextButton(
+          key: const Key('clear_filters_button'),
           onPressed: () => _clearFilters(context),
           child: const Text('Clear Filters'),
         ),
         TextButton(
+          key: const Key('apply_filters_button'),
           onPressed: () => _applyFilters(context),
           child: const Text('Apply Filters'),
         ),

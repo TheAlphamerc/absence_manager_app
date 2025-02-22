@@ -80,5 +80,30 @@ void main() {
       await tester.pump();
       expect(find.byType(FiltersWidget), findsOneWidget);
     });
+
+    testWidgets('FilterWidget returns value in onFilterApplied callback',
+        (tester) async {
+      String? type;
+      DateTime? startDate;
+      DateTime? endDate;
+
+      await tester.pumpApp(FiltersWidget(
+        filterBy: FilterBy(
+          typeFilter: 'sickness',
+          startDate: DateTime(2021, 1, 1),
+          endDate: DateTime(2021, 1, 31),
+        ),
+        onFilterApplied: (String? t, DateTime? s, DateTime? e) {
+          type = t;
+          startDate = s;
+          endDate = e;
+        },
+      ));
+
+      await tester.tap(find.byKey(const Key('apply_filters_button')));
+      expect(type, 'sickness');
+      expect(startDate, DateTime(2021, 1, 1));
+      expect(endDate, DateTime(2021, 1, 31));
+    });
   });
 }
