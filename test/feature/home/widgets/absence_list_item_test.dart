@@ -4,7 +4,7 @@ import 'package:absence_manager_app/feature/home/widgets/widgets.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../helpers/pump_app.dart';
+import '../../../helpers/pump_app.dart';
 
 void main() {
   group('AbsenceListItem', () {

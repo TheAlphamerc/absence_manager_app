@@ -21,6 +21,7 @@ class App extends StatelessWidget {
       locale: context.select((SettingBloc bloc) => bloc.state.locale),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
+      debugShowCheckedModeBanner: false,
       home: BlocProvider(
         create: (context) => AbsenceBloc(
           repository: AbsenceRepository(

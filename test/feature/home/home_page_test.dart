@@ -1,5 +1,4 @@
 import 'package:absence_manager_app/feature/home/bloc/absence_bloc.dart';
-import 'package:absence_manager_app/feature/home/repository/absence_repository.dart';
 import 'package:absence_manager_app/feature/home/views/home_page.dart';
 import 'package:absence_manager_app/feature/home/widgets/widgets.dart';
 import 'package:absence_manager_app/feature/settings/views/setting_page.dart';
@@ -9,9 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-import 'helpers/pump_app.dart';
-
-class MockAbsenceRepository extends Mock implements AbsenceRepository {}
+import '../../helpers/pump_app.dart';
 
 class MockAbsenceBloc extends MockBloc<AbsenceEvent, AbsenceState>
     implements AbsenceBloc {}
