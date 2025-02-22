@@ -110,8 +110,7 @@ class __$$SettingStateImplCopyWithImpl<$Res>
 
 class _$SettingStateImpl implements _SettingState {
   const _$SettingStateImpl(
-      {this.themeMode = ThemeMode.light,
-      this.locale = const Locale('de', 'DE')});
+      {this.themeMode = ThemeMode.light, this.locale = const Locale('en')});
 
   @override
   @JsonKey()

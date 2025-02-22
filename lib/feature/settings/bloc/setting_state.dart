@@ -4,7 +4,7 @@ part of 'setting_bloc.dart';
 class SettingState with _$SettingState {
   const factory SettingState({
     @Default(ThemeMode.light) ThemeMode themeMode,
-    @Default(Locale('de', 'DE')) Locale locale,
+    @Default(Locale('en')) Locale locale,
   }) = _SettingState;
   factory SettingState.initial() => const SettingState();
 }
