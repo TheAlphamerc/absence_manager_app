@@ -14,5 +14,11 @@
     "settingPageTitle": "Einstellungen",
     "settingPageDescription": "Ändern Sie die Einstellungen der Anwendung",
     "settingPageLanguage": "Sprache",
-    "settingPageDarkMode": "Dunkler Modus"
+    "settingPageDarkMode": "Dunkler Modus",
+    "filters": "Filter",
+    "filterByType": "Filtern nach Typ",
+    "selectStartDate": "Wählen Sie das Startdatum",
+    "selectEndDate": "Wählen Sie das Enddatum",
+    "clearFilters": "Filter löschen",
+    "applyFilters": "Filter anwenden"
 }

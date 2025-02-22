@@ -27,6 +27,9 @@ class AppTheme {
         appBarTheme: AppBarTheme(
           backgroundColor: Colors.deepPurple[100],
         ),
+        dialogTheme: ThemeData.dark()
+            .dialogTheme
+            .copyWith(backgroundColor: Color(0xff1b1b1f)),
       );
 }
 

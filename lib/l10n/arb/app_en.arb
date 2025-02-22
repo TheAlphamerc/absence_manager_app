@@ -14,5 +14,11 @@
     "settingPageTitle": "Settings",
     "settingPageDescription": "Change the settings of the application",
     "settingPageLanguage": "Language",
-    "settingPageDarkMode": "Dark Mode"
+    "settingPageDarkMode": "Dark Mode",
+    "filters": "Filters",
+    "filterByType": "Filter By Type",
+    "selectStartDate": "Select Start Date",
+    "selectEndDate": "Select End Date",
+    "clearFilters": "Clear Filters",
+    "applyFilters": "Apply Filters"
 }

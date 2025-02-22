@@ -1,3 +1,4 @@
+import 'package:absence_manager_app/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 
 import '../bloc/absence_bloc.dart';
@@ -67,7 +68,7 @@ class FiltersWidgetState extends State<FiltersWidget> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('Filters'),
+      title: Text(context.l10n.filters),
       content: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -76,8 +77,8 @@ class FiltersWidgetState extends State<FiltersWidget> {
             DropdownButtonFormField<String>(
               key: const Key('filter_by_type_dropdown'),
               value: _selectedType,
-              hint:
-                  const Text('Filter by type', key: Key('filter_by_type_text')),
+              hint: Text(context.l10n.filterByType,
+                  key: Key('filter_by_type_text')),
               items: ['sickness', 'vacation'].map((String type) {
                 return DropdownMenuItem<String>(
                   value: type,
@@ -103,7 +104,7 @@ class FiltersWidgetState extends State<FiltersWidget> {
                       onPressed: () => _selectDate(context, true),
                       label: Text(
                         _startDate == null
-                            ? 'Select Start Date'
+                            ? context.l10n.selectStartDate
                             : _startDate!.toLocal().toString().split(' ')[0],
                         key: const Key('start_date_text'),
                       ),
@@ -132,7 +133,7 @@ class FiltersWidgetState extends State<FiltersWidget> {
                       onPressed: () => _selectDate(context, false),
                       label: Text(
                         _endDate == null
-                            ? 'Select End Date'
+                            ? context.l10n.selectEndDate
                             : _endDate!.toLocal().toString().split(' ')[0],
                         key: const Key('end_date_text'),
                       ),
@@ -157,12 +158,12 @@ class FiltersWidgetState extends State<FiltersWidget> {
         TextButton(
           key: const Key('clear_filters_button'),
           onPressed: () => _clearFilters(context),
-          child: const Text('Clear Filters'),
+          child: Text(context.l10n.clearFilters),
         ),
         TextButton(
           key: const Key('apply_filters_button'),
           onPressed: () => _applyFilters(context),
-          child: const Text('Apply Filters'),
+          child: Text(context.l10n.applyFilters),
         ),
       ],
     );
