@@ -1,5 +1,17 @@
 import 'package:flutter/material.dart';
 
+/// A widget that displays a stack of widgets based on an enum value.
+/// ```
+/// EnumStack<Status>(
+///   value: state.status,
+///   children: {
+///    Status.initial: const SizedBox.shrink(),
+///    Status.loading: const Center(
+///      child: CircularProgressIndicator.adaptive(),
+///     ),
+///    Status.error: ErrorView(message: state.message ?? ""),},
+///  );
+/// ```
 class EnumStack<T extends Enum> extends StatelessWidget {
   const EnumStack({super.key, required this.value, required this.children});
 

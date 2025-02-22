@@ -3,6 +3,9 @@ import 'package:absence_manager_app/theme/theme.dart';
 import 'package:flutter/material.dart';
 import '../entity/entity.dart';
 
+/// AbsenceListItem is a widget that displays the details of an absence.
+/// The details include the member's name, type, status, start date, end date,
+/// member note, and admitter note.
 class AbsenceListItem extends StatelessWidget {
   final Absence absence;
   final int index;
@@ -66,6 +69,7 @@ class AbsenceListItem extends StatelessWidget {
     return '${date.day}/${date.month}/${date.year}';
   }
 
+  /// Generate iCal file for the absence.
   void _generateICal(Absence absence) {}
 
   Widget _label(BuildContext context, String key, String value) {

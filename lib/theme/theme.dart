@@ -1,22 +1,26 @@
 import 'package:flutter/material.dart';
 
+const seedColor = Colors.deepPurple;
+
 class AppTheme {
+  /// Light theme for the app
   static ThemeData get lightTheme => ThemeData.light(
         useMaterial3: true,
       ).copyWith(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.deepPurple,
+          seedColor: seedColor,
         ),
         appBarTheme: AppBarTheme(
-          backgroundColor: Colors.deepPurple[100],
+          backgroundColor: seedColor[100],
         ),
       );
 
+  /// Dark theme for the app
   static ThemeData get darkTheme => ThemeData.dark(
         useMaterial3: true,
       ).copyWith(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.deepPurple,
+          seedColor: seedColor,
         ),
         dividerTheme: const DividerThemeData(
           space: 20,
@@ -25,7 +29,7 @@ class AppTheme {
         ),
         brightness: Brightness.dark,
         appBarTheme: AppBarTheme(
-          backgroundColor: Colors.deepPurple[100],
+          backgroundColor: seedColor[100],
         ),
         dialogTheme: ThemeData.dark()
             .dialogTheme

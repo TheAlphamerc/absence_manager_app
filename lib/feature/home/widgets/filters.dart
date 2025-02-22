@@ -6,13 +6,18 @@ import '../bloc/absence_bloc.dart';
 typedef OnFilterApplied = void Function(
     String? type, DateTime? startDate, DateTime? endDate);
 
+/// FiltersWidget is used to filter the absences by type and date.
 class FiltersWidget extends StatefulWidget {
   const FiltersWidget({
     super.key,
     required this.onFilterApplied,
     this.filterBy,
   });
+
+  /// The onFilterApplied function is called when the filters are applied or cleared.
   final OnFilterApplied onFilterApplied;
+
+  /// The filterBy is used to set the default values of the filters.
   final FilterBy? filterBy;
 
   @override
@@ -32,6 +37,7 @@ class FiltersWidgetState extends State<FiltersWidget> {
     _endDate = widget.filterBy?.endDate;
   }
 
+  /// Select the date from the date picker.
   Future<void> _selectDate(BuildContext context, bool isStartDate) async {
     final DateTime? picked = await showDatePicker(
       context: context,
@@ -50,11 +56,13 @@ class FiltersWidgetState extends State<FiltersWidget> {
     }
   }
 
+  /// Apply the filters and close the dialog.
   void _applyFilters(BuildContext context) {
     Navigator.of(context).pop();
     widget.onFilterApplied(_selectedType, _startDate, _endDate);
   }
 
+  /// Clear the filters.
   void _clearFilters(BuildContext context) {
     setState(() {
       _selectedType = null;
@@ -93,6 +101,9 @@ class FiltersWidgetState extends State<FiltersWidget> {
               },
             ),
             const SizedBox(height: 10),
+            /**
+             * Start date button to select the start date.
+             */
             Row(
               children: [
                 Expanded(
@@ -111,6 +122,9 @@ class FiltersWidgetState extends State<FiltersWidget> {
                     ),
                   ),
                 ),
+                /**
+                 * Clear button to clear the start date if it is pre selected.
+                 */
                 if (_startDate != null)
                   IconButton(
                     icon: const Icon(Icons.clear),
@@ -122,6 +136,9 @@ class FiltersWidgetState extends State<FiltersWidget> {
                   ),
               ],
             ),
+            /**
+             * End date button to select the end date.
+             */
             Row(
               children: [
                 Expanded(
@@ -140,6 +157,9 @@ class FiltersWidgetState extends State<FiltersWidget> {
                     ),
                   ),
                 ),
+                /**
+                 * Clear button to clear the end date if it is pre selected.
+                 */
                 if (_endDate != null)
                   IconButton(
                     icon: const Icon(Icons.clear),
@@ -155,11 +175,17 @@ class FiltersWidgetState extends State<FiltersWidget> {
         ),
       ),
       actions: [
+        /**
+         * Clear filters button to clear the filters.
+         */
         TextButton(
           key: const Key('clear_filters_button'),
           onPressed: () => _clearFilters(context),
           child: Text(context.l10n.clearFilters),
         ),
+        /**
+         * Apply filters button to apply the filters.
+         */
         TextButton(
           key: const Key('apply_filters_button'),
           onPressed: () => _applyFilters(context),

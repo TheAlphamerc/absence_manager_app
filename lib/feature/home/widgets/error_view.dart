@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+/// ErrorView is a widget that displays an error message.
+/// The error message is displayed in a Text widget.
 class ErrorView extends StatelessWidget {
   const ErrorView({super.key, required this.message});
   final String message;

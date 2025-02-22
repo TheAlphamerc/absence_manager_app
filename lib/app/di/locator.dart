@@ -7,6 +7,8 @@ import '../../feature/settings/bloc/setting_bloc.dart';
 
 final getIt = GetIt.instance;
 
+/// Set up dependency injection. Register all the dependencies that will be used in the app
+/// and can be accessed globally
 void setUpDependency() {
   getIt.registerSingleton<Api>(Api());
   getIt.registerSingleton<AbsenceRepository>(

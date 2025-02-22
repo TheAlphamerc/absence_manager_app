@@ -10,14 +10,24 @@ import '../widgets/widgets.dart';
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
+  /// Open the filter dialog to filter the absences.
+  /// The filter dialog is opened when the filter button is pressed.
+  /// The filter dialog is used to filter the absences by type and date.
   void _openFiltersDialog(BuildContext context) async {
     await showDialog(
       context: context,
       builder: (_) {
         return FiltersWidget(
+          /**
+           * Default filterBy value is taken from the AbsenceBloc state.
+           */
           filterBy: context.read<AbsenceBloc>().state.filterBy,
           onFilterApplied:
               (String? type, DateTime? startDate, DateTime? endDate) {
+            /**
+             * update the AbsenceBloc state with the new filter values.
+             * Fetch the absences with the new filter values.
+             */
             context.read<AbsenceBloc>().add(
                   FetchAbsences(
                     typeFilter: type,
@@ -37,6 +47,9 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text(AppLocalizations.of(context).appName),
         actions: [
+          /**
+           * Display total Absences if there are any.
+           */
           BlocBuilder<AbsenceBloc, AbsenceState>(
             builder: (context, state) {
               if (state.totalAbsences > 0) {
@@ -49,11 +62,17 @@ class HomePage extends StatelessWidget {
               return const SizedBox.shrink();
             },
           ),
+          /**
+           * Filter button to open the filter dialog.
+           */
           IconButton(
             key: const Key('filter_button'),
             icon: const Icon(Icons.filter_list),
             onPressed: () => _openFiltersDialog(context),
           ),
+          /**
+           * Settings button to open the settings page.
+           */
           IconButton(
               key: const Key('settings_button'),
               onPressed: () {

@@ -1,11 +1,12 @@
 import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../entity/absence.dart';
 import '../repository/absence_repository.dart';
+
 part 'absence_bloc.freezed.dart';
 part 'absence_event.dart';
 part 'absence_state.dart';
@@ -18,6 +19,7 @@ class AbsenceBloc extends Bloc<AbsenceEvent, AbsenceState> {
     on<LoadMoreAbsences>(_onLoadMoreAbsences);
   }
 
+  /// Fetch absences with the given filter values.
   Future<void> _onFetchAbsences(
       FetchAbsences event, Emitter<AbsenceState> emit) async {
     final currentTypeFilter = event.typeFilter;
@@ -55,7 +57,6 @@ class AbsenceBloc extends Bloc<AbsenceEvent, AbsenceState> {
         message: 'Failed to fetch absences',
         status: Status.error,
       ));
-      debugPrint(e.toString());
     }
   }
 
@@ -88,6 +89,7 @@ class AbsenceBloc extends Bloc<AbsenceEvent, AbsenceState> {
     }
   }
 
+  /// Get the total number of absences with the given filter values.
   Future<int> _getTotalAbsences({
     String? typeFilter,
     DateTime? startDate,

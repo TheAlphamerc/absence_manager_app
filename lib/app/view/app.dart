@@ -16,12 +16,30 @@ class App extends StatelessWidget {
     return MaterialApp(
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
+      /**
+       * The themeMode and locale are selected from the SettingBloc state.
+       * The themeMode and locale are used to set the theme and locale of the app.
+       */
       themeMode: context.select((SettingBloc bloc) => bloc.state.themeMode),
+      /**
+       * The locale is selected from the SettingBloc state.
+       * The locale is used to set the locale of the app.
+       */
       locale: context.select((SettingBloc bloc) => bloc.state.locale),
+      /**
+       * The localizationsDelegates and supportedLocales are used to provide the app with the translations.
+       */
       localizationsDelegates: AppLocalizations.localizationsDelegates,
+      /**
+       * The supportedLocales are used to provide the app with the supported locales.
+       */
       supportedLocales: AppLocalizations.supportedLocales,
       debugShowCheckedModeBanner: false,
       home: BlocProvider(
+        /**
+         * The AbsenceBloc is created and added to the BlocProvider.
+         * The FetchAbsences event is added to the AbsenceBloc to fetch the absences.
+         */
         create: (context) => getIt<AbsenceBloc>()..add(const FetchAbsences()),
         child: const HomePage(),
       ),
