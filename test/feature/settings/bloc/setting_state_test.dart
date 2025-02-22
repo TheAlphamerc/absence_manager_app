@@ -10,7 +10,7 @@ void main() {
 
       // Then
       expect(state.themeMode, ThemeMode.light);
-      expect(state.locale, Locale('de', 'DE'));
+      expect(state.locale, Locale('en'));
     });
     test('Should have correct copyWith', () {
       // Given
@@ -30,9 +30,9 @@ void main() {
 
       // Then
       expect(state1,
-          SettingState(themeMode: ThemeMode.light, locale: Locale('de', 'DE')));
+          SettingState(themeMode: ThemeMode.light, locale: Locale('en')));
       expect(state2,
-          SettingState(themeMode: ThemeMode.dark, locale: Locale('de', 'DE')));
+          SettingState(themeMode: ThemeMode.dark, locale: Locale('en')));
     });
   });
 }
