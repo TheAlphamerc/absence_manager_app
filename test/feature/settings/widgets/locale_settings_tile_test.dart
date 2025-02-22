@@ -6,8 +6,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../../helpers/pump_app.dart';
-
 class MockSettingBloc extends MockBloc<SettingEvent, SettingState>
     implements SettingBloc {}
 
@@ -78,6 +76,21 @@ void main() {
         await tester.tap(find.text('English'));
         await tester.pumpAndSettle();
         expect(find.text('English'), findsOneWidget);
+      };
+    });
+
+    testWidgets(
+        'Should send selected theme mode to Settings block using ChangeTheme event',
+        (tester) async {
+      when(() => settingBloc.add(ChangeLocale(Locale('de')))).thenReturn(null);
+      (tester) async {
+        final screen = SettingPage();
+        await tester.pumpApp(screen, settingBloc);
+        await tester.tap(find.byKey(const Key('language_dropdown_button')));
+        await tester.pumpAndSettle();
+        await tester.tap(find.text('German'));
+        await tester.pumpAndSettle();
+        verify(() => settingBloc.add(ChangeLocale(Locale('de')))).called(1);
       };
     });
   });

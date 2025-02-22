@@ -44,7 +44,7 @@ Map<String, dynamic> _$$AbsenceImplToJson(_$AbsenceImpl instance) =>
       'startDate': instance.startDate.toIso8601String(),
       'type': _$AbsenceTypeEnumMap[instance.type]!,
       'createdAt': instance.createdAt.toIso8601String(),
-      'member': instance.member,
+      'member': instance.member?.toJson(),
     };
 
 const _$AbsenceTypeEnumMap = {

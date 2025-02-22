@@ -3,7 +3,6 @@ import 'package:absence_manager_app/feature/settings/views/setting_page.dart';
 import 'package:absence_manager_app/feature/settings/views/widgets/widgets.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
@@ -45,6 +44,19 @@ void main() {
         await tester.pumpApp(screen, settingBloc);
         await tester.tap(find.byKey(const Key('theme_mode_settings_tile')));
         await tester.pump();
+        verify(() => settingBloc.add(ChangeTheme(ThemeMode.dark))).called(1);
+      };
+    });
+
+    testWidgets(
+        'Should send selected locale to Settings block using ChangeTheme event',
+        (tester) async {
+      when(() => settingBloc.add(ChangeTheme(ThemeMode.dark))).thenReturn(null);
+      (tester) async {
+        final screen = SettingPage();
+        await tester.pumpApp(screen, settingBloc);
+        await tester.tap(find.byKey(const Key('dark_mode_switch')));
+        await tester.pumpAndSettle();
         verify(() => settingBloc.add(ChangeTheme(ThemeMode.dark))).called(1);
       };
     });

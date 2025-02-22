@@ -19,9 +19,8 @@ void main() {
     absenceBloc.close();
   });
   test('Verify that the initial state of the AbsenceBloc is AbsenceState.', () {
-    final parkingBloc = AbsenceBloc(repository: repository);
-    expect(parkingBloc.state, AbsenceState.initial());
-    expect(parkingBloc.state, isA<AbsenceState>());
+    expect(absenceBloc.state, AbsenceState.initial());
+    expect(absenceBloc.state, isA<AbsenceState>());
   });
   group(
     'AbsenceBloc',

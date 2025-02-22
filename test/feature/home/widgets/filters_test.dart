@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:absence_manager_app/feature/home/bloc/absence_bloc.dart';
 import 'package:absence_manager_app/feature/home/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +34,7 @@ void main() {
     });
 
     testWidgets('Should apply filters', (tester) async {
-      var type;
+      String? type;
       DateTime? startDate;
       DateTime? endDate;
 

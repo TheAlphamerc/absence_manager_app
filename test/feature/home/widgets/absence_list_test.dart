@@ -1,11 +1,8 @@
-import 'dart:math';
-
 import 'package:absence_manager_app/feature/home/bloc/absence_bloc.dart';
 import 'package:absence_manager_app/feature/home/entity/entity.dart';
 import 'package:absence_manager_app/feature/home/repository/absence_repository.dart';
 import 'package:absence_manager_app/feature/home/views/home_page.dart';
 import 'package:absence_manager_app/feature/home/widgets/widgets.dart';
-import 'package:absence_manager_app/feature/settings/views/setting_page.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
